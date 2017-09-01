@@ -19,7 +19,6 @@ interface SendBird_Instance {
   disconnect(callback?: Function): void;
   // You can reinitate auto-reconnect manually.
   reconnect(): boolean;
-
   getConnectionState(): string;
   getApplicationId(): string;
 
@@ -201,8 +200,8 @@ interface PreviousMessageListQuery {
  *  Channel
  */
 interface BaseChannel {
-  isGroupChannel: boolean;
-  isOpenChannel: boolean;
+  isGroupChannel(): boolean;
+  isOpenChannel(): boolean;
 
   url: string;
   name: string;
@@ -278,7 +277,7 @@ interface BaseChannel {
   deleteMetaData(key: string, callback: Function): void;
   deleteAllMetaData(callback: Function): void;
 
-  /* GetMessages */  
+  /* GetMessages */
   getNextMessagesByTimestamp(ts: number, isInclusive: boolean, nextResultSize: number, shouldReverse:boolean, messageType: string, customType: string, callback: Function): void;
   getPreviousMessagesByTimestamp(ts: number, isInclusive: boolean, prevtResultSize: number, shouldReverse:boolean, messageType: string, customType: string, callback: Function): void;
   getPreviousAndNextMessagesByTimestamp(ts: number, prevtResultSize: number, nextResultSize: number, shouldReverse:boolean, messageType: string, customType: string, callback: Function): void;
